@@ -1,5 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# 自己爬起来（Termux 里跑）：三样常驻的少了哪样补哪样。
+# 自己恢复（Termux 里跑）：三样常驻的少了哪样补哪样。
 # 谁来叫它：
 #   1. termux-job-scheduler 的定时任务，每 15 分钟一回，重启后还在
 #   2. watch.sh 发现 agent 没了的时候，立刻触发同一个任务

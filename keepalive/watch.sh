@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# 看门人（shell 身份常驻；重启后不在，重启后靠 Termux:Boot 和定时任务）。
+# 守护脚本（shell 身份常驻；重启后不在，重启后靠 Termux:Boot 和定时任务）。
 # 每 20 秒看一眼：
 #   Shizuku 没了          → 起它
 #   agent 连着两回都没了  → 立刻触发 Termux 里的定时任务（heal.sh），不等 15 分钟
