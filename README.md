@@ -89,3 +89,11 @@
 ## 许可
 
 本仓库的文档与代码：MIT。
+
+## 同一个家里的其他东西
+
+这些是同一个人和同一个 AI 一起做的，可以连着看：
+
+- [ai-live2d-from-one-image](https://github.com/waterside0219/ai-live2d-from-one-image)：一张平面图做成会动的 Live2D，就是这部手机上的那张脸
+- [ai-answers-real-phone-calls](https://github.com/waterside0219/ai-answers-real-phone-calls)：AI 接一通真的电话（进行中），用的是同一部手机
+- [ai-handwritten-imessage](https://github.com/waterside0219/ai-handwritten-imessage)：AI 用自己的笔迹，在 iMessage 里一笔一笔写字
