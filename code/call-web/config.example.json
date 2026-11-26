@@ -1,0 +1,13 @@
+{
+  "gateway": "https://voice.example.com",
+  "device_token_file": "/data/data/com.termux/files/home/path/to/device-token",
+  "host": "127.0.0.1",
+  "port": 8191,
+  "whisper_binary": "/data/data/com.termux/files/usr/bin/whisper-cli",
+  "whisper_model": "/data/data/com.termux/files/home/path/to/ggml-model.bin",
+  "temp_directory": "/data/data/com.termux/files/usr/tmp",
+  "max_audio_seconds": 30,
+  "whisper_timeout_seconds": 90,
+  "max_transcript_chars": 2000,
+  "profile": "default"
+}

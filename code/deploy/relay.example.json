@@ -1,0 +1,12 @@
+{
+  "host": "127.0.0.1",
+  "port": 8832,
+  "token_file": "../.private/body-device-token",
+  "updates_dir": "../.private/updates",
+  "tts": {
+    "api_key_file": "../.private/minimax-api-key",
+    "voice_id": "SET_VOICE_ID",
+    "model": "speech-02-hd",
+    "endpoint": "https://api.minimaxi.com/v1/t2a_v2"
+  }
+}

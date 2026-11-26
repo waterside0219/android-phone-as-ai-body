@@ -1,0 +1,13 @@
+{
+  "url": "wss://relay.example.com/agent",
+  "token": "REPLACE_WITH_DEVICE_TOKEN",
+  "device_id": "mix-flip-2",
+  "rish": "/data/data/com.termux/files/home/phone-agent/rish",
+  "rish_application_id": "com.termux",
+  "apps": {
+    "settings": "com.android.settings",
+    "taobao": "com.taobao.taobao",
+    "browser": "com.miui.browser",
+    "shizuku": "moe.shizuku.privileged.api"
+  }
+}

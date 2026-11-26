@@ -1,0 +1,14 @@
+.private/
+__pycache__/
+*.pyc
+phone-agent/config.json
+phone-agent/pwa-shortcut.json
+phone-agent/rish
+phone-agent/rish_shizuku.dex
+phone-agent/presets/
+call-web/config.json
+deploy/relay.json
+deploy/vision.json
+face/vendor/
+face/models/
+face/runtime/

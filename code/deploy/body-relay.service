@@ -1,0 +1,18 @@
+[Unit]
+Description=Phone body relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/phone-body/code
+ExecStart=/usr/bin/python3 -B %h/phone-body/code/server/body_relay.py --config %h/phone-body/code/deploy/relay.json
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

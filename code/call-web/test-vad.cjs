@@ -1,0 +1,25 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const element={disabled:false,addEventListener(){},classList:{add(){},remove(){}}};
+const context=vm.createContext({module:{exports:{}},document:{getElementById:()=>({...element})},window:{addEventListener(){}},WebSocket:{OPEN:1},Uint8Array,Int16Array,Float32Array,DataView,atob,btoa,crypto:{randomUUID:()=>Math.random().toString()},setTimeout,clearTimeout,AbortController});
+vm.runInContext(fs.readFileSync(__dirname+'/app.js','utf8'),context);
+const {VoiceGate}=context.module.exports;
+assert.equal(typeof VoiceGate,'function','default calls need a voice gate');
+let events=[];const gate=new VoiceGate(event=>events.push(event));
+const frame=(level,samples=1600)=>new Int16Array(samples).fill(level);
+for(let i=0;i<5;i++)gate.feed(frame(0));
+for(let i=0;i<3;i++)gate.feed(frame(1000));
+assert.ok(events.some(event=>event.type==='utterance_audio'),'audio streams before the utterance ends');
+assert.ok(!events.some(event=>event.type==='utterance_end'));
+for(let i=0;i<7;i++)gate.feed(frame(0));
+assert.equal(events.at(-1).type,'utterance_end');
+assert.equal(events.at(-1).discard,false);
+const pcm=Buffer.concat(events.filter(event=>event.type==='utterance_audio').map(event=>Buffer.from(event.pcm,'base64')));
+assert.equal(pcm.length/2,5440+4800+11200,'0.34 seconds of preroll + voice + 0.7 second tail');
+assert.equal(pcm.readInt16LE(5439*2),0);assert.equal(pcm.readInt16LE(5440*2),1000);
+events=[];gate.feed(frame(1000,3200));for(let i=0;i<7;i++)gate.feed(frame(0));
+assert.equal(events.at(-1).discard,true,'under .25 seconds must be discarded');
+events=[];for(let i=0;i<310;i++)gate.feed(frame(1000));gate.finish();
+let length=0;for(const event of events){if(event.type==='utterance_start')length=0;if(event.type==='utterance_audio')length+=Buffer.from(event.pcm,'base64').length/2;if(event.type==='utterance_end')assert.ok(length<=480000,'hard 30 second limit includes preroll');}
+events=[];gate.feed(frame(1000));gate.finish(true);assert.equal(events.at(-1).discard,true);
+const state={};let count=0;for(let i=0;i<375;i++)count+=context.module.exports.resample16k(new Float32Array(128),48000,state).length;assert.ok(Math.abs(count-16000)<=1,'48k input keeps 16k timing across frames');
+console.log('VAD preroll, streaming, minimum voice, silence boundary, 30s cap and cancellation passed');

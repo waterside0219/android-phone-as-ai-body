@@ -1,0 +1,9 @@
+{
+  "relay_url": "http://127.0.0.1:8832",
+  "token_file": "../.private/body-device-token",
+  "api_key_file": "../.private/openrouter-api-key",
+  "state_dir": "../.private/vision",
+  "tmux_socket": "",
+  "tmux_target": "SET_TMUX_TARGET",
+  "tmux_command": "claude"
+}
